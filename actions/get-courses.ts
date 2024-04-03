@@ -5,7 +5,7 @@ import { db } from "@/lib/db";
 
 type CourseWithProgressWithCategory=Course &{
     category:Category | null;
-    chapters:{id:string};
+    chapters:{id:string}[];
     progress :number | null
 }
 
