@@ -33,7 +33,7 @@ const iconMap:Record<Category["name"], IconType>={
 
 export const Categories=({items} : CategoriesProps)=>{
     return(
-        <div className="flex items-center gap-x-2 overflow-x-auto pb-2 gap-10">
+        <div className="flex items-center gap-x-2 overflow-x-auto pb-2 gap-10 p-5">
             {
                 items.map((item)=>(
                     <CategoryItem
