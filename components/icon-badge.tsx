@@ -9,7 +9,7 @@ const backgroundVariants=cva(
         variants:{
             variant:{
                 default:"bg-sky-100",
-                success:"bg-emrald-100"
+                success:"bg-emerald-200"
             },
             // iconVariant:{
             //     default:"text-sky-700",

@@ -92,9 +92,11 @@ const CourseIdpage = async({
                     </span>
                 </div>
                 {/* Add actions */}
-                {/* <Actions
-
-                /> */}
+                <Actions
+                    disabled={!isComplete}
+                    courseId={params.courseId}
+                    isPublished={course.isPublished}
+                />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
                 <div>

@@ -7,34 +7,35 @@ import { ConfirmModal } from "@/components/modals/confirm-modal";
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useConfettiStore } from "@/hooks/use-confetti-store";
 
 
 
 interface ActionProps{
     disabled:boolean;
     courseId:string;
-    chapterId:string;
     isPublished:boolean;
 }
 
 export const Actions=({
     disabled,
     courseId,
-    chapterId,
     isPublished
 }:ActionProps)=>{
     const router=useRouter()
     const [isLoading,setIsLoading]=useState(false)
+    const confetti=useConfettiStore()
     const onClick=async()=>{
         try{
             setIsLoading(true)
 
             if(isPublished){
-                await axios.patch(`/api/courses/${courseId}/chapters/${chapterId}/unpublish`)
-                toast.success("Chapter Unpublished")
+                await axios.patch(`/api/courses/${courseId}/unpublish`)
+                toast.success("Course Unpublished")
             }else{
-                await axios.patch(`/api/courses/${courseId}/chapters/${chapterId}/publish`)
-                toast.success("Chapter published")
+                await axios.patch(`/api/courses/${courseId}/publish`)
+                toast.success("Course published")
+                confetti.onOpen()
             }
 
             router.refresh()
@@ -50,11 +51,11 @@ export const Actions=({
         try{
             setIsLoading(true)
 
-            await axios.delete(`/api/courses/${courseId}/chapters/${chapterId}`);
+            await axios.delete(`/api/courses/${courseId}`);
 
-            toast.success("Chapter Deleted")
+            toast.success("Course Deleted")
             router.refresh()
-            router.push(`/teacher/courses/${courseId}`)
+            router.push(`/teacher/courses`)
             
         }catch{
             toast.error("Something went wrong")
